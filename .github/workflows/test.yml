@@ -1,0 +1,41 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install mise
+        uses: jdx/mise-action@v2
+
+      - name: Install build dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libncurses-dev
+
+      - name: Install plugin from tested commit
+        shell: bash
+        env:
+          PLUGIN_REF: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          mise plugin install -f vfox-piotrb-vfox-tig \
+            "https://github.com/piotrb/vfox-tig.git#$PLUGIN_REF"
+
+      - name: Install tig using vfox plugin from GitHub
+        run: |
+          mise install "vfox:piotrb/vfox-tig@2.6.1"
+
+      - name: Test tig
+        run: |
+          mise x "vfox:piotrb/vfox-tig@2.6.1" -- tig --version
