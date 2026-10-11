@@ -6,7 +6,7 @@ tig only publishes source tarballs, so this plugin builds tig from source on ins
 
 ## Requirements
 
-Building tig requires a C compiler, `make`, and ncurses development headers. These
+Building tig requires a C compiler, `make`, `pkg-config`, and ncurses development headers. These
 are declared as `systemDependencies` in `metadata.lua`, so mise checks for them
 before installing and - depending on your `system_deps` setting - can report,
 offer to install, or auto-install anything missing.
@@ -15,10 +15,10 @@ If you'd rather install them yourself first:
 
 | OS                     | Command                                            |
 | ---------------------- | --------------------------------------------------- |
-| Debian/Ubuntu           | `sudo apt-get install build-essential libncurses-dev` |
-| Fedora/RHEL             | `sudo dnf install gcc make ncurses-devel`             |
-| Arch                    | `sudo pacman -S base-devel ncurses`                   |
-| macOS (Homebrew)        | `xcode-select --install && brew install ncurses`      |
+| Debian/Ubuntu           | `sudo apt-get install build-essential pkg-config libncurses-dev` |
+| Fedora/RHEL             | `sudo dnf install gcc make pkgconf-pkg-config ncurses-devel`             |
+| Arch                    | `sudo pacman -S base-devel pkgconf ncurses`                   |
+| macOS (Homebrew)        | `xcode-select --install && brew install pkgconf ncurses`      |
 
 If a build step still fails, the error includes the full `configure`/`make` output,
 which usually names the missing dependency directly.

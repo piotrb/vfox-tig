@@ -1,7 +1,7 @@
 --- Builds tig from the extracted source tarball and installs it into a
 --- dedicated "install" sub-folder, keeping the build tree and the installed
 --- tree separate.
---- Requires a C compiler, make, and ncurses development headers on PATH.
+--- Requires a C compiler, make, pkg-config, and ncurses development headers on PATH.
 
 -- Runs a build step, capturing its full stdout+stderr to a log file so that a
 -- failure can surface more than vfox's default one-line summary (e.g. the
@@ -18,7 +18,7 @@ local function run_step(cmd, cwd, env, label, command)
                 .. label
                 .. "' failed. Full output below.\n\n"
                 .. output
-                .. "\n\nSee README.md for required build dependencies (C compiler, make, ncurses headers)."
+                .. "\n\nSee README.md for required build dependencies (C compiler, make, pkg-config, ncurses headers)."
         )
     end
 end
