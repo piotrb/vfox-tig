@@ -2,7 +2,7 @@
 PLUGIN = {}
 
 PLUGIN.name = "tig"
-PLUGIN.version = "0.1.0"
+PLUGIN.version = "0.2.0"
 PLUGIN.homepage = "https://github.com/piotrb/vfox-tig"
 PLUGIN.license = "GPL-2.0-only"
 PLUGIN.description = "tig - text-mode interface for git"
